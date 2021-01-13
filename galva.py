@@ -24,15 +24,23 @@ def root():
 
 @app.route('/pogasall',methods=['GET'])
 def pogasall():
-    aa = request.args.get('a',default='0.',type=str)
-    bb = request.args.get('b',default='0.',type=str)
-    #aa= "Ievadītā vērtība: " + aa
+    aa = request.args.get('a',default='0',type=str)
+    bb = request.args.get('b',default='0',type=str)
+    
     aa1 = int(aa)
+    bb1 = int(bb)
     b1=[]
     for k in range(aa1):
-      b1.append("Vērtība "+str(k)+" un tā kvadrāts= "+str(k*k))
+      for j in range(bb1):
+        per = 2*(k+1+j+1)
+        lauk = (k+1)*(j+1)
+        rinda = "Mala a="
+        rinda = rinda + str(k+1) + " mala b=" + str(j+1) +"; "
+        rinda = rinda + "perimetrs P="+str(per)
+        rinda = rinda + " laukums S="+str(lauk)
+        b1.append(rinda)
     
-    return render_template("rezultats.html",vards="Kontroļu pārbaude",rezultats=b1)
+    return render_template("rezultats.html",vards="Taisnstūra elementi",rezultats=b1)
 
 @app.route('/pogas')
 def pogas():
